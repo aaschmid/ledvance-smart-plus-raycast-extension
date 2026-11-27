@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    name: Typecheck, test, lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Lint (ESLint + Prettier)
+        run: npx eslint src/ && npx prettier --check src/
+        # 'ray lint' additionally validates the manifest against raycast.com and needs no
+        # auth for that, but requires the Raycast CLI runtime; the direct tools cover the
+        # code-level gates portably. Re-add 'npm run lint' if the runner supports it.
