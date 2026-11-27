@@ -1,0 +1,84 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "ledvance-smart-plus",
+  "title": "Ledvance SMART+ WiFi",
+  "description": "Control Ledvance SMART+ WiFi lights (Tuya protocol) locally, without cloud or app",
+  "icon": "icon.png",
+  "author": "aaschmid",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Control Panel",
+      "description": "Shows current state and offers all light controls",
+      "mode": "view"
+    },
+    {
+      "name": "scenes",
+      "title": "Scenes",
+      "subtitle": "Ledvance SMART+ WiFi",
+      "description": "Static and animated client-side scene presets",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "TUYA_DEV_ID",
+      "description": "Tuya virtual device ID (from the Smart Life/Tuya app).",
+      "type": "textfield",
+      "required": true,
+      "title": "Device ID",
+      "placeholder": "virtual ID from the app"
+    },
+    {
+      "name": "TUYA_IP",
+      "description": "Local IP address of the light (e.g. '192.168.80.27').",
+      "type": "textfield",
+      "required": true,
+      "title": "IP address",
+      "placeholder": "192.168.80.27"
+    },
+    {
+      "name": "TUYA_KEY",
+      "description": "Tuya local key (16 characters).",
+      "type": "textfield",
+      "required": true,
+      "title": "Local key",
+      "placeholder": "16-char local key"
+    },
+    {
+      "name": "TUYA_VER",
+      "description": "Tuya local protocol version, default '3.3'.",
+      "type": "textfield",
+      "required": false,
+      "title": "Protocol version",
+      "placeholder": "3.3"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^2.14.0",
+    "react": "^19.0.0",
+    "tuyapi": "^7.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "vitest": "^4.1.12"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "lint": "ray lint",
+    "lint:fix": "ray lint --fix",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --typecheck"
+  }
+}
